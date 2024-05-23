@@ -1,3 +1,2 @@
-<<<<<<< HEAD
-Esta es una modificacgitión hecha en develop
->>>>>>> develop
+
+Esta es una modification getchar en develop
