@@ -1,1 +1,3 @@
-Prueba para proyeccto de automatización de pruebas apis 
+<<<<<<< HEAD
+Esta es una modificacgitión hecha en develop
+>>>>>>> develop
