@@ -1,55 +1,44 @@
-import sender_stand_request
-import test_functions
-import data
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Básico de Registro</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
+<div class="formulario-registro">
+    <h2>Registro de Estudiante</h2>
+    <form id="registroForm">
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-# Prueba negative 1
-def test_create_user_2_letter_in_first_name_get_success_response():
-    test_functions.positive_assert('Aa')
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
 
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
 
-def test_create_user_15_letter_in_first_name_get_success_response():
-    test_functions.positive_assert('Aaaaaaa aaaaaaaa')
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
 
+        <label for="grado">Grado de Ingreso:</label>
+        <select id="grado" name="grado" required>
+            <option value="">Seleccione el grado</option>
+            <option value="primero">Primero</option>
+            <option value="segundo">Segundo</option>
+            <option value="tercero">Tercero</option>
+            <option value="cuarto">Cuarto</option>
+            <option value="quinto">Quinto</option>
+        </select>
 
-# Prueba negative 3
-def test_create_user_1_letter_in_first_name_get_error_response():
-    test_functions.negative_assert_symbol('A')
+        <button type="submit">Registrar</button>
+    </form>
+</div>
 
-
-# Prueba negative 4
-def test_create_user_16_letter_in_first_name_get_error_response():
-    test_functions.negative_assert_symbol('Аааааааааааааааа')
-
-
-# Prueba negative 5
-def test_create_user_has_space_in_first_name_get_error_response():
-    test_functions.negative_assert_symbol('А Aаа')
-
-
-# Prueba negative 6
-def test_create_user_has_special_symbol_in_first_name_get_error_response():
-    test_functions.negative_assert_symbol("\№%@\,")
-
-
-# Prueba negative 7
-def test_create_user_has_number_in_first_name_get_error_response():
-    test_functions.negative_assert_symbol("123")
-
-
-# Prueba negative 8
-def test_create_user_no_first_name_get_error_response():
-    user_body = data.user_body.copy()
-    user_body.pop("firstName")
-    test_functions.negative_assert_no_firstname(user_body)
-
-
-# Prueba negative 9
-def test_create_user_empty_first_name_get_error_response():
-    user_body = test_functions.get_user_body("")
-    test_functions.negative_assert_no_firstname(user_body)
-
-# Prueba negative 10
+</body>
+</html>
 def test_create_user_number_type_first_name_get_error_response():
     user_body = test_functions.get_user_body(12)
     response = sender_stand_request.post_new_user(user_body)
