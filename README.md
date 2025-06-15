@@ -24,7 +24,7 @@ Todas estas herramientas serán configuradas y utilizadas dentro del entorno de 
 - Selenium, Pytest, Pip: Librerias para automatización.
   
 </a>
-<img decoding="async" src="https://img.shields.io/badge/Python-darkyellow.svg?&style=for-the-badge&logo=Python&logoColor=white" alt="Python"/>
+<img decoding="async" src="https://img.shields.io/badge/Python-darkblue.svg?&style=for-the-badge&logo=Python&logoColor=white" alt="Python"/>
 <img decoding="async" src="https://img.shields.io/badge/PyCharm-darkgreen.svg?&style=for-the-badge&logo=PyCharm&logoColor=white" alt="PyCharm"/>
 <img decoding="async" src="https://img.shields.io/badge/Git_Bash-D89B01?&style=for-the-badge&logo=GitBash&logoColor=white" alt="GitBash"/>
 <img decoding="async" src="https://img.shields.io/badge/GitHub-000000.svg?&style=for-the-badge&logo=GitHub&logoColor=white" alt="GitHub"/>
@@ -39,21 +39,18 @@ Para comenzar a trabajar con el proyecto, sigue estos pasos detallados:
 - Descarga PyCharm: Si aún no lo tienes, descarga el IDE PyCharm desde el siguiente enlace: https://www.jetbrains.com/pycharm/
 Clona el Repositorio: Abre tu terminal o línea de comandos y ejecuta el siguiente comando para clonar el proyecto:
 Bash
-- git clone https://github.com/usuario/registro.git
+- git clone 
 Accede al Directorio del Proyecto: Navega al directorio del proyecto recién clonado:
 Bash
 - cd ./registro
 Instala Selenium: Instala la biblioteca Selenium usando pip (o pip3, dependiendo de tu configuración de Python):
 Bash
 - pip install selenium
-# o
-pip3 install selenium
+- pip3 install selenium
 Instala Pytest: Instala el framework Pytest de la misma manera:
 Bash
-
-pip install pytest
-# o
-pip3 install pytest
+- pip install pytest
+- pip3 install pytest
 
 ### :file_folder: *Archivos:* 
 1. README (Descripcion del contenido)
