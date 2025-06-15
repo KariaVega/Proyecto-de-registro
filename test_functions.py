@@ -1,44 +1,41 @@
-import sender_stand_request
-import data
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
 
+# Ruta del controlador, por ejemplo ChromeDriver
+driver = webdriver.Chrome(executable_path='ruta/al/chromedriver')
 
-def get_user_body(first_name): # solo cambia el nombre(Katharina) con el nombre de prueba(123)
-    current_body = data.user_body.copy()
-    current_body["firstName"] = first_name
-    return current_body
+try:
+    # Abre el formulario
+    driver.get('ruta/a/formulario.html')  # Cambia a la ruta local del archivo HTML
 
+    # Encuentra los elementos del formulario y rellena cada campo
+    driver.find_element(By.ID, "nombre").send_keys("Juan Pérez")
+    driver.find_element(By.ID, "email").send_keys("juan.perez@example.com")
+    driver.find_element(By.ID, "telefono").send_keys("1234567890")
+    driver.find_element(By.ID, "fechaNacimiento").send_keys("2000-01-01")
+    
+    # Selecciona una opción del menú desplegable de grado
+    grado = driver.find_element(By.ID, "grado")
+    for option in grado.find_elements(By.TAG_NAME, "option"):
+        if option.text == "Primero":
+            option.click()
+            break
 
-# Prueba negative 1 a 2
-def positive_assert(first_name):
-    user_body = get_user_body(first_name)
-    user_response = sender_stand_request.post_new_user(user_body)
-    assert user_response.status_code == 201
-    print(user_response.status_code)
-    assert user_response.json()["authToken"] != ""
-    print(user_response.json())
-    users_table_response = sender_stand_request.get_users_table()
-    str_user = user_body["firstName"] + "," + user_body["phone"] + "," \
-               + user_body["address"] + ",,," + user_response.json()["authToken"]
-    assert users_table_response.text.count(str_user) == 1
+    # Verifica que todos los campos están correctamente llenados
+    assert driver.find_element(By.ID, "nombre").get_attribute("value") == "Juan Pérez"
+    assert driver.find_element(By.ID, "email").get_attribute("value") == "juan.perez@example.com"
+    assert driver.find_element(By.ID, "telefono").get_attribute("value") == "1234567890"
+    assert driver.find_element(By.ID, "fechaNacimiento").get_attribute("value") == "2000-01-01"
+    assert grado.get_attribute("value") == "primero"
 
+    # Envía el formulario
+    driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
 
-# Prueba negative 3 a 7
-def negative_assert_symbol(first_name):
-    user_body = get_user_body(first_name)
-    response = sender_stand_request.post_new_user(user_body)
-    assert response.status_code == 400
-    print(response.status_code)
-    assert response.json()["code"] == 400
-    print(response.status_code)
+    # Pausa para ver el resultado (opcional)
+    time.sleep(2)
 
-
-# Prueba negative 8 y 9
-def negative_assert_no_firstname(user_body):
-    # user_body = get_user_body(user_body)
-    response = sender_stand_request.post_new_user(user_body)
-    assert response.status_code == 400
-    print(response.status_code)
-    assert response.json()["code"] == 400
-
-
-
+finally:
+    # Cierra el navegador
+    driver.quit()
